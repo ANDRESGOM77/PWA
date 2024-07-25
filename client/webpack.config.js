@@ -19,17 +19,23 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
+        template: './index.html',
+        title: 'text editor'
+      }),
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
       }),
       new WebpackPwaManifest({
-        filename: 'manifest.json',
         fingerprints: false,
         inject: true,
-        name: 'My PWA',
-        short_name: 'MyPWA',
-        description: 'My Progressive Web App',
-        background_color: '#ffffff',
-        theme_color: '#4db7fe',
+        name: 'text editor',
+        short_name: 'J.A.T.E',
+        description: 'Never forget your editor',
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
+        start_url: './',
+        publicPath: './',
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
@@ -37,10 +43,6 @@ module.exports = () => {
             destination: path.join('assets', 'icons'),
           },
         ],
-      }),
-      new InjectManifest({
-        swSrc: './src/sw.js',
-        swDest: 'service-worker.js',
       }),
     ],
 
